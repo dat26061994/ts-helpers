@@ -33,7 +33,11 @@ export const timeFromDate = (date: Date) => {
 
 // Capitalize a String
 export const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return str
+    .toLowerCase()
+    .split(' ')
+    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }
 
 // Find the number of days between two days
@@ -125,4 +129,63 @@ export const reverseString = (str: any) => [...str].reverse().join('');
 export const sortArray = (arr: any[], key: string, orderBy: string = 'asc') => {
     let arrClone = [...arr];
     return arrClone.sort((a: any, b: any) => (a[key] < b[key] ? -1 : 1) * (orderBy === 'asc' ? 1 : -1));
+}
+
+// Smooth-scroll to the top of the page
+export const scrollToTop = () => {
+    const c = document.documentElement.scrollTop || document.body.scrollTop;
+    if (c > 0) {
+      window.requestAnimationFrame(scrollToTop);
+      window.scrollTo(0, c - c / 8);
+    }
+};
+
+
+// The code for a 24-hour clock is quite similar to the previous code, we only have one major change.
+export const currentTime = () => {
+    let date = new Date(); 
+    let hh = date.getHours() as number;
+    let mm = date.getMinutes();
+    let ss = date.getSeconds();
+    let session = "AM";
+
+    if(hh > 12) {
+        session = "PM";
+    }
+
+    hh = (hh < 10) ? 0 + hh : hh;
+    mm = (mm < 10) ? 0 + mm : mm;
+    ss = (ss < 10) ? 0 + ss : ss;
+    
+   let time = hh + ":" + mm + ":" + ss + " " + session;
+
+   return time;
+}
+
+// Create a countdown timer
+export const createTimer = (start: string, end: string) => {
+    let startTime = new Date(start).getTime();
+    let endTime = new Date(end).getTime();
+
+    let distance = endTime - startTime;
+
+    if (distance > 0) {
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        return {
+            days: days,
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds,
+            expired: false
+        }
+    } else {
+        return {
+            expired: true
+        }
+    }
 }

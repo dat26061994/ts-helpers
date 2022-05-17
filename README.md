@@ -47,3 +47,5 @@ isDateValid('2020 03 20');
 | redirectTo | This snippet can be used to do a redirect to a specified URL. | url: string, asLink: boolean = true |  |
 | reverseString | This snippet can be used to reverse a string. | str: any | hex |
 | sortArray | Sort array by key | arr: any[], key: string, orderBy: string = 'asc' | array |
+| scrollToTop | Smooth-scroll to the top of the page | |  |
+| createTimer | Create a countdown timer | start: string, end: string | object |

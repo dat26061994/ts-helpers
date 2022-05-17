@@ -25,3 +25,18 @@ export declare const randomNumberInRange: (min: number, max: number) => number;
 export declare const redirectTo: (url: string, asLink?: boolean) => string | void;
 export declare const reverseString: (str: any) => string;
 export declare const sortArray: (arr: any[], key: string, orderBy?: string) => any[];
+export declare const scrollToTop: () => void;
+export declare const currentTime: () => string;
+export declare const createTimer: (start: string, end: string) => {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    expired: boolean;
+} | {
+    expired: boolean;
+    days?: undefined;
+    hours?: undefined;
+    minutes?: undefined;
+    seconds?: undefined;
+};
